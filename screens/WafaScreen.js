@@ -16,7 +16,7 @@ export default class WafaScreen extends React.Component {
         />
         <Button
           title="Go to Home"
-          onPress={() => this.props.navigation.navigate('Home')}
+          onPress={() => this.props.navigation.navigate('Home',{w:'sas'})}
         />
         <Button
           title="Go back"
