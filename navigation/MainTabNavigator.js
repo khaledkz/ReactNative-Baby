@@ -38,88 +38,101 @@ HomeStack.navigationOptions = {
   )
 };
 
-const Dates = createStackNavigator({
-  Links: HomeDates
-});
+// const Dates = createStackNavigator({
+//   Links: HomeDates
+// });
 
-Dates.navigationOptions = {
-  tabBarLabel: "Dates",
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `ios-information-circle${focused ? "" : "-outline"}`
-          : "md-information-circle"
-      }
-    />
-  )
-};
+// Dates.navigationOptions = {
+//   tabBarLabel: "Dates",
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={
+//         Platform.OS === "ios"
+//           ? `ios-information-circle${focused ? "" : "-outline"}`
+//           : "md-information-circle"
+//       }
+//     />
+//   )
+// };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen
-});
+// const LinksStack = createStackNavigator({
+//   Links: LinksScreen
+// });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: "Links",
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `ios-link${focused ? "" : "-outline"}`
-          : "md-link"
-      }
-    />
-  )
-};
+// LinksStack.navigationOptions = {
+//   tabBarLabel: "Links",
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={
+//         Platform.OS === "ios"
+//           ? `ios-link${focused ? "" : "-outline"}`
+//           : "md-link"
+//       }
+//     />
+//   )
+// };
+
+
+
+// const SettingsStack = createStackNavigator({
+//   Settings: SettingsScreen
+// });
+
+// SettingsStack.navigationOptions = {
+//   tabBarLabel: "Settings",
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={
+//         Platform.OS === "ios"
+//           ? `ios-options${focused ? "" : "-outline"}`
+//           : "md-options"
+//       }
+//     />
+//   )
+// };
+
+let GenerateRoutes=(()=>{
 
 let routes = [
-  {
-    order: 0,
-    pagesTotal: 3,
-    pages: [
-      { number: 1, name: "Home", component: HomeScreen },
-      { number: 2, name: "khaled", component: khaledScreen },
-      { number: 3, name: "wafa", component: WafaScreen }
-    ],
-    initialRouteName: "Home",
-    routeName:HomeStack,
-    iosIcon: "ios-information-circle",
-    androidIcon: "md-information-circle"
-  },
   {
     order: 1,
     pagesTotal: 1,
     iosIcon: "ios-options",
     androidIcon: "md-options",
-    routeName:SettingsStack,
+    routeName:'SettingsStack',
     page:{name:'Settings',component:SettingsScreen}
   }
 ];
+ 
+  let myRoutes=[];
+  routes.map(route=>{
+       route.routeName = createStackNavigator({
+    Settings: SettingsScreen,[route.page.name]:route.page.component
+  });
 
-
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: "Settings",
+  route.routeName.navigationOptions = {
+  tabBarLabel: route.page.name,
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === "ios"
-          ? `ios-options${focused ? "" : "-outline"}`
-          : "md-options"
+          ? `${route.iosIcon}${focused ? "" : "-outline"}`
+          : route.androidIcon
       }
     />
   )
 };
+myRoutes=[...myRoutes,route.routeName]
+ 
+})
+ return  myRoutes[0];
 
-export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
-  Dates
-});
+}) 
+console.log()
+console.log({HomeStack})
+ 
+export default createBottomTabNavigator({page:GenerateRoutes()});
