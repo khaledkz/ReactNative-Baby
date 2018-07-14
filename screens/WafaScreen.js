@@ -1,15 +1,15 @@
 import React from 'react';
 import { ScrollView, StyleSheet,Text } from 'react-native';
  
-export default class LinksScreen extends React.Component {
+export default class WafaScreen extends React.Component {
   static navigationOptions = {
-    title: 'Name',
+    title: 'father',
   };
 
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Text>His Name Is Khalil</Text>
+        <Text>His mother Is wafaa</Text>
        </ScrollView>
     );
   }
