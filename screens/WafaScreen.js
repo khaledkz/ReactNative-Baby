@@ -12,11 +12,11 @@ export default class WafaScreen extends React.Component {
         <Text>His mother Is wafaa</Text>
         <Button
           title="Go to wafa... again"
-          onPress={() => this.props.navigation.push('wafa')}
+          onPress={() => this.props.navigation.push('WafaScreen')}
         />
         <Button
           title="Go to Home"
-          onPress={() => this.props.navigation.navigate('Home',{w:'sas'})}
+          onPress={() => this.props.navigation.navigate('HomeScreen',{w:'sas'})}
         />
         <Button
           title="Go back"
