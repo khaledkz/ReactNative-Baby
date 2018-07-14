@@ -30,7 +30,7 @@ export default class HomeScreen extends React.Component {
           <Button
             title="dady"
             color="red"
-            onPress={() => this.props.navigation.navigate("khaled")}
+            onPress={() => this.props.navigation.navigate("khaledScreen")}
           />
         </ScrollView>
       </View>
