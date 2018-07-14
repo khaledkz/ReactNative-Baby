@@ -14,7 +14,9 @@ export default class HomeScreen extends React.Component {
     title: "WELCOME MY SON"
   };
   render() {
-    // const {navigate} =this.props.navigation;
+   const {navigation} =this.props;
+    const w = navigation.getParam('w', 'blablabla');
+
     console.log(this.proos);
     return (
       <View style={styles.container}>
@@ -23,7 +25,7 @@ export default class HomeScreen extends React.Component {
           contentContainerStyle={styles.contentContainer}
         >
           <View style={styles.welcomeContainer}>
-            <Text>I Create This App For My Lovley Son</Text>
+            <Text>I Create This App For My Lovley Son {w}</Text>
           </View>
           <Button
             title="dady"
