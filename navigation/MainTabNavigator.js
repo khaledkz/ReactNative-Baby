@@ -24,19 +24,37 @@ const HomeStack = createStackNavigator(
   }
 );
 
-HomeStack.navigationOptions = {
-  tabBarLabel: "Home",
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `ios-information-circle${focused ? "" : "-outline"}`
-          : "md-information-circle"
-      }
-    />
-  )
-};
+// HomeStack.navigationOptions = {
+//   tabBarLabel: "Home",
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={
+//         Platform.OS === "ios"
+//           ? `ios-information-circle${focused ? "" : "-outline"}`
+//           : "md-information-circle"
+//       }
+//     />
+//   )
+// };
+
+
+const generateNavigation=(routeStack,label,iosIcon,androidIcon)=>{
+  routeStack.navigationOptions = {
+    tabBarLabel: label,
+    tabBarIcon: ({ focused }) => (
+      <TabBarIcon
+        focused={focused}
+        name={
+          Platform.OS === "ios"
+          ? `${iosIcon}${focused ? "" : "-outline"}`
+          : androidIcon
+        }
+      />
+    )
+  }}
+
+  generateNavigation(HomeStack,"Home","ios-information-circle","md-information-circle");
 
 // const Dates = createStackNavigator({
 //   Links: HomeDates
@@ -94,45 +112,6 @@ HomeStack.navigationOptions = {
 //   )
 // };
 
-let GenerateRoutes=(()=>{
 
-let routes = [
-  {
-    order: 1,
-    pagesTotal: 1,
-    iosIcon: "ios-options",
-    androidIcon: "md-options",
-    routeName:'SettingsStack',
-    page:{name:'Settings',component:SettingsScreen}
-  }
-];
- 
-  let myRoutes=[];
-  routes.map(route=>{
-       route.routeName = createStackNavigator({
-    Settings: SettingsScreen,[route.page.name]:route.page.component
-  });
 
-  route.routeName.navigationOptions = {
-  tabBarLabel: route.page.name,
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `${route.iosIcon}${focused ? "" : "-outline"}`
-          : route.androidIcon
-      }
-    />
-  )
-};
-myRoutes=[...myRoutes,route.routeName]
- 
-})
- return  myRoutes[0];
-
-}) 
-console.log()
-console.log({HomeStack})
- 
-export default createBottomTabNavigator({page:GenerateRoutes()});
+export default createBottomTabNavigator({HomeStack});
