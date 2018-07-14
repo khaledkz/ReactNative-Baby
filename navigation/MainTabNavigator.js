@@ -74,6 +74,31 @@ LinksStack.navigationOptions = {
   )
 };
 
+let routes = [
+  {
+    order: 0,
+    pagesTotal: 3,
+    pages: [
+      { number: 1, name: "Home", component: HomeScreen },
+      { number: 2, name: "khaled", component: khaledScreen },
+      { number: 3, name: "wafa", component: WafaScreen }
+    ],
+    initialRouteName: "Home",
+    routeName:HomeStack,
+    iosIcon: "ios-information-circle",
+    androidIcon: "md-information-circle"
+  },
+  {
+    order: 1,
+    pagesTotal: 1,
+    iosIcon: "ios-options",
+    androidIcon: "md-options",
+    routeName:SettingsStack,
+    page:{name:'Settings',component:SettingsScreen}
+  }
+];
+
+
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen
 });
