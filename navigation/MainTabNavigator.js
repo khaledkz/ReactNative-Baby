@@ -13,33 +13,7 @@ import HomeDates from "../screens/Dates";
 import khaledScreen from "../screens/KhaledScreen";
 import WafaScreen from "../screens/WafaScreen";
 
-const HomeStack = createStackNavigator(
-  {
-    Home: HomeScreen,
-    khaled: khaledScreen,
-    wafa: WafaScreen
-  },
-  {
-    initialRouteName: "Home"
-  }
-);
-
-// HomeStack.navigationOptions = {
-//   tabBarLabel: "Home",
-//   tabBarIcon: ({ focused }) => (
-//     <TabBarIcon
-//       focused={focused}
-//       name={
-//         Platform.OS === "ios"
-//           ? `ios-information-circle${focused ? "" : "-outline"}`
-//           : "md-information-circle"
-//       }
-//     />
-//   )
-// };
-
-
-const generateNavigation=(routeStack,label,iosIcon,androidIcon)=>{
+const generateNavigation = (routeStack, label, iosIcon, androidIcon) => {
   routeStack.navigationOptions = {
     tabBarLabel: label,
     tabBarIcon: ({ focused }) => (
@@ -47,71 +21,37 @@ const generateNavigation=(routeStack,label,iosIcon,androidIcon)=>{
         focused={focused}
         name={
           Platform.OS === "ios"
-          ? `${iosIcon}${focused ? "" : "-outline"}`
-          : androidIcon
+            ? `${iosIcon}${focused ? "" : "-outline"}`
+            : androidIcon
         }
       />
     )
-  }}
+  };
+};
 
-  generateNavigation(HomeStack,"Home","ios-information-circle","md-information-circle");
+const HomeStack = createStackNavigator(
+  { HomeScreen, khaledScreen, WafaScreen },
+  { initialRouteName: "HomeScreen" }
+);
+generateNavigation(
+  HomeStack,
+  "Home",
+  "ios-information-circle",
+  "md-information-circle"
+);
 
-// const Dates = createStackNavigator({
-//   Links: HomeDates
-// });
+const Dates = createStackNavigator({ HomeDates });
+generateNavigation(
+  Dates,
+  "Dates",
+  "ios-information-circle",
+  "md-information-circle"
+);
 
-// Dates.navigationOptions = {
-//   tabBarLabel: "Dates",
-//   tabBarIcon: ({ focused }) => (
-//     <TabBarIcon
-//       focused={focused}
-//       name={
-//         Platform.OS === "ios"
-//           ? `ios-information-circle${focused ? "" : "-outline"}`
-//           : "md-information-circle"
-//       }
-//     />
-//   )
-// };
+const LinksStack = createStackNavigator({ LinksScreen });
+generateNavigation(LinksStack, "Link", "ios-link", "md-link");
 
-// const LinksStack = createStackNavigator({
-//   Links: LinksScreen
-// });
+const SettingsStack = createStackNavigator({ SettingsScreen });
+generateNavigation(SettingsStack, "Settings", "ios-options", "md-options");
 
-// LinksStack.navigationOptions = {
-//   tabBarLabel: "Links",
-//   tabBarIcon: ({ focused }) => (
-//     <TabBarIcon
-//       focused={focused}
-//       name={
-//         Platform.OS === "ios"
-//           ? `ios-link${focused ? "" : "-outline"}`
-//           : "md-link"
-//       }
-//     />
-//   )
-// };
-
-
-
-// const SettingsStack = createStackNavigator({
-//   Settings: SettingsScreen
-// });
-
-// SettingsStack.navigationOptions = {
-//   tabBarLabel: "Settings",
-//   tabBarIcon: ({ focused }) => (
-//     <TabBarIcon
-//       focused={focused}
-//       name={
-//         Platform.OS === "ios"
-//           ? `ios-options${focused ? "" : "-outline"}`
-//           : "md-options"
-//       }
-//     />
-//   )
-// };
-
-
-
-export default createBottomTabNavigator({HomeStack});
+export default createBottomTabNavigator({ HomeStack, Dates, LinksStack });
