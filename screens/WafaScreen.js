@@ -1,15 +1,27 @@
 import React from 'react';
-import { ScrollView, StyleSheet,Text } from 'react-native';
+import { ScrollView, StyleSheet,Text,Button } from 'react-native';
  
 export default class WafaScreen extends React.Component {
   static navigationOptions = {
-    title: 'father',
+    title: 'Mam',
   };
 
   render() {
     return (
       <ScrollView style={styles.container}>
         <Text>His mother Is wafaa</Text>
+        <Button
+          title="Go to wafa... again"
+          onPress={() => this.props.navigation.push('wafa')}
+        />
+        <Button
+          title="Go to Home"
+          onPress={() => this.props.navigation.navigate('Home')}
+        />
+        <Button
+          title="Go back"
+          onPress={() => this.props.navigation.goBack()}
+        />
        </ScrollView>
     );
   }
