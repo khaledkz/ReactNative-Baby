@@ -13,7 +13,7 @@ export default class KhaledScreen extends React.Component {
         <Button
             title="Mam"
             color="red"
-            onPress={() => this.props.navigation.navigate("wafa")}
+            onPress={() => this.props.navigation.navigate("WafaScreen")}
           />
        </ScrollView>
     );
